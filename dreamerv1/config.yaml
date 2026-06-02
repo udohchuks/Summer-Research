@@ -1,0 +1,19 @@
+environment:
+  action_dim: 3 # e.g., Continuous actions like Pendulum-v1
+  image_shape: [3, 64, 64] # Channels, Height, Width
+
+world_model:
+  stochastic_dim: 32 # Size of stochastic state (z)
+  deterministic_dim: 256 # Size of GRU hidden state (h)
+  hidden_dim: 256 # Size of MLP internal layers
+  embed_dim: 1024 # Size of the CNN encoder output flat vector
+
+training:
+  batch_size: 16
+  sequence_length: 50
+  buffer_capacity: 10000 # Storing 10k steps locally saves RAM/VRAM
+  imagination_horizon: 15
+  discount: 0.99 # Gamma
+  lambda_: 0.95 # Lambda blending factor
+  actor_lr: 8e-5 # Lower learning rate for actor stability locally
+  critic_lr: 8e-5
